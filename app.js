@@ -13,17 +13,6 @@ require("dotenv").config()
 
 const port = process.env.PORT || 3000
 
-// //Conexion a base de datos
-// const mongoose = require('mongoose');
-
-// const user = process.env.USER
-// const password = process.env.PASSWORD
-// const dbname = process.env.DBNAME
-// const uri = `mongodb+srv://${user}:${password}@cluster0.dx8zh.mongodb.net/${dbname}?retryWrites=true&w=majority`
-
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => console.log("Base de datos conectada"))
-//     .catch(error => console.log(error));
 
 //Donde cargar los archivos estaticos
 app.use(express.static(__dirname + "/public"))

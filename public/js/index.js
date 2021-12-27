@@ -36,24 +36,37 @@ const app = Vue.createApp({
 
         },
         completarRegistro() {
-            axios.post('/api/clients',
-                {
-                    first_name: this.Name,
-                    last_name: this.lName,
-                    password: this.pwd,
-                    email: this.email
-                })
+            axios.post('/api/clients/email', { email: this.email }, {
+                headers: { 'content-type': 'application/json' }
+            })
                 .then(response => {
-                    console.log('registered')
+                    if (response.data.client == null) {
+                        axios.post('/api/clients',
+                            {
+                                first_name: this.Name,
+                                last_name: this.lName,
+                                password: this.pwd,
+                                email: this.email
+                            })
+                            .then(response => {
+                                console.log('registered')
 
-                    axios.post('/api/auth/signIn', { email: this.email, password: this.pwd }, {
-                        headers: { 'content-type': 'application/json' }
-                    })
-                        .then(response => {
+                                axios.post('/api/auth/signIn', { email: this.email, password: this.pwd }, {
+                                    headers: { 'content-type': 'application/json' }
+                                })
+                                    .then(response => {
 
-                            window.location.href = "/accounts"
-                        })
-                }).then(response => console.log(response))
+                                        window.location.href = "/accounts"
+                                    })
+                            }).then(response => console.log(response))
+                    } else {
+                        swal("Client already exists")
+                    }
+                })
+
+
+
+
         }, getCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(';');

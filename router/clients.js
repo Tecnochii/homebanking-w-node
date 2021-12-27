@@ -6,6 +6,7 @@ const { verifyToken } = require('../middlewares/index')
 
 router.post('/', clientController.createClient)
 router.get('/', clientController.getClients)
+router.post('/email', clientController.getClientByEmail)
 router.get('/:id', clientController.getClient)
 router.delete('/:id', verifyToken, clientController.deleteClient)
 router.put('/:id', verifyToken, clientController.updateClient)

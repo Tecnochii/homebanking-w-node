@@ -1,7 +1,6 @@
 const Client = require('../models/Client')
 const Account = require('../models/Account')
 const Card = require('../models/Card')
-const Loan = require('../models/Loan')
 const Client_Loan = require('../models/Client_Loan')
 
 
@@ -51,7 +50,32 @@ async function getClient(req, res) {
         console.log(error)
     }
 }
+async function getClientByEmail(req, res) {
+    const { email } = req.body
+    try {
+        const client = await Client.findOne({
+            attributes: ['id', 'email', 'first_name', 'last_name'],
+            where: {
+                email: email
+            },
+            include: [
+                Account,
+                Card,
+                Client_Loan
+            ],
 
+        })
+
+        res.json({
+            client: client,
+
+        })
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 async function createClient(req, res) {
     const { email, first_name, last_name, password } = req.body
     try {
@@ -158,5 +182,6 @@ module.exports = {
     getClients,
     getClient,
     deleteClient,
-    updateClient
+    updateClient,
+    getClientByEmail
 }
