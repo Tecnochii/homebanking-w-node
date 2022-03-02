@@ -5,10 +5,10 @@ const Client = require('../models/Client')
 
 const verifyToken = async (req, res, next) => {
     const token = req.cookies["x-acces-token"]
-
     try {
         if (!token) {
-            res.redirect('/')
+
+            return res.redirect('/')
         }
 
         const decoded = jwt.verify(token, config.secret)
@@ -30,8 +30,8 @@ const verifyToken = async (req, res, next) => {
         } else {
             next()
         }
-        console.log(decoded)
     } catch (error) {
+        console.log(error)
         res.clearCookie("x-acces-token")
         res.status(401).json({ message: 'Unauthorized or Session Expired' })
     }
