@@ -15,13 +15,13 @@
                         <div v-for="account in accounts" class="col">
                             <div class="card">
                                 <div>
-                                    <h3>{{account.number}}</h3>
+                                    <h3 v-cloak>{{account.number}}</h3>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">${{account.balance}}</h5>
+                                    <h5 v-cloak class="card-title">${{account.balance}}</h5>
                                 </div>
                                 <div>
-                                    <h5>Account {{account.accountType}}</h5>
+                                    <h5 v-cloak>Account {{account.accountType}}</h5>
                                 </div>
                                 <div>
                                     <a :href="'/account'" @click='accounTransactionCookie(account.id)'

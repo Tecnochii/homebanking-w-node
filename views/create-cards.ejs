@@ -6,15 +6,17 @@
             </div>
             <main>
 
-                <Form>
+                <Form v-cloak>
                     <h2>Select Card type and Color</h2>
                     <label for="cardtype">Card Type:</label>
                     <select v-model="type" name="cardtype" id="cardtype">
+                        <option value="">Select type</option>
                         <option v-show="cardsDebito.length < 3" value="Debito" selected>Debit</option>
                         <option v-show="cardsCredito.length < 3" value="Credito">Credit</option>
                     </select>
                     <label for="color">Card Color:</label>
                     <select v-model="color" name="color" id="color">
+                        <option value="">Select color</option>
                         <option value="SILVER" selected>SILVER</option>
                         <option value="GOLD">GOLD</option>
                         <option value="TITANIUM">TITANIUM</option>
@@ -40,6 +42,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- script vue -->
     <script src="https://unpkg.com/vue@next"></script>
+    <!-- swal -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- mis scripts -->
     <script src="js/cards.js"></script>
     <!-- bootstrap -->

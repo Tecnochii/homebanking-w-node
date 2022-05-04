@@ -66,13 +66,18 @@ const app = Vue.createApp({
                 .then(setTimeout(function () { window.location.href = "/cards" }, 3000))
         },
         AddCard() {
-            axios.post('/api/cards', { cardholder: this.name + " " + this.lname, color: this.color, client_id: this.currentClient, type: this.type },
-                {
-                    headers: { 'content-type': 'application/json' }
-                }
-            )
-                .then(setTimeout(function () { window.location.href = "/cards" }, 3000)
+            if (this.color != "" && this.type != "") {
+                axios.post('/api/cards', { cardholder: this.name + " " + this.lname, color: this.color, client_id: this.currentClient, type: this.type },
+                    {
+                        headers: { 'content-type': 'application/json' }
+                    }
                 )
+                    .then(setTimeout(function () { window.location.href = "/cards" }, 3000)
+                    )
+            } else {
+                swal("Select type and color")
+            }
+
         },
         fecha(fecha) {
             fecha = fecha.split("").splice(0, 7).join("")

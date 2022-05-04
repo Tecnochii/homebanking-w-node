@@ -14,15 +14,17 @@
                             <th scope="col">Balance</th>
                         </tr>
                     </thead>
-                    <tbody v-for="transaction in transactions">
+                    <tbody v-cloak v-for="transaction in transactions">
                         <tr>
-                            <td>${{transaction.amount}}</td>
+                            <td v-cloak>${{transaction.amount}}</td>
 
-                            <td v-if="transaction.type == 'Credito'" style="color: green;">{{transaction.type}}</td>
-                            <td v-else-if="transaction.type == 'Debito'" style="color: Red;">{{transaction.type}}</td>
-                            <td>{{transaction.description}}</td>
-                            <td>{{transaction.date}}</td>
-                            <td>{{transaction.balances}}</td>
+                            <td v-cloak v-if="transaction.type == 'Credito'" style="color: green;">{{transaction.type}}
+                            </td>
+                            <td v-cloak v-else-if="transaction.type == 'Debito'" style="color: Red;">
+                                {{transaction.type}}</td>
+                            <td v-cloak>{{transaction.description}}</td>
+                            <td v-cloak>{{transaction.date}}</td>
+                            <td v-cloak>{{transaction.balances}}</td>
                         </tr>
 
                     </tbody>
